@@ -1,0 +1,204 @@
+﻿<Window x:Class="StudentManagementSystem.Views.StudentAddEditWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:StudentManagementSystem.Views"
+        xmlns:vm="clr-namespace:StudentManagementSystem.ViewModels"
+        mc:Ignorable="d"
+        Title="StudentAddEditWindow" Height="650" Width="800">
+    <Window.Resources>
+        <Style x:Key="FocusVisual">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Rectangle Margin="2" StrokeDashArray="1 2" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" SnapsToDevicePixels="true" StrokeThickness="1"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <SolidColorBrush x:Key="Button.Static.Background" Color="#FFDDDDDD"/>
+        <SolidColorBrush x:Key="Button.Static.Border" Color="#FF707070"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Background" Color="#FFBEE6FD"/>
+        <SolidColorBrush x:Key="Button.MouseOver.Border" Color="#FF3C7FB1"/>
+        <SolidColorBrush x:Key="Button.Pressed.Background" Color="#FFC4E5F6"/>
+        <SolidColorBrush x:Key="Button.Pressed.Border" Color="#FF2C628B"/>
+        <SolidColorBrush x:Key="Button.Disabled.Background" Color="#FFF4F4F4"/>
+        <SolidColorBrush x:Key="Button.Disabled.Border" Color="#FFADB2B5"/>
+        <SolidColorBrush x:Key="Button.Disabled.Foreground" Color="#FF838383"/>
+        <Style x:Key="radiusbutton" TargetType="{x:Type Button}">
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+            <Setter Property="Background" Value="{StaticResource Button.Static.Background}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource Button.Static.Border}"/>
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="1"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" CornerRadius="10" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="true">
+                            <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsDefaulted" Value="true">
+                                <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.MouseOver.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.MouseOver.Border}"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Pressed.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Pressed.Border}"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
+                                <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Window.DataContext>
+        <vm:StudentAddEditWindowVM/>
+    </Window.DataContext>
+    <Grid>
+     <Grid.RowDefinitions>
+         <RowDefinition Height="Auto"/>
+         <RowDefinition Height="Auto"/>
+         <RowDefinition Height="Auto"/>
+         <RowDefinition Height="Auto"/>
+     </Grid.RowDefinitions>
+     <Grid.ColumnDefinitions>
+         <ColumnDefinition Width="800"/>
+     </Grid.ColumnDefinitions>
+     <StackPanel 
+ Width="800" Height="650" >
+
+
+         <StackPanel
+ Width="800" Height="650" HorizontalAlignment="Center"
+ VerticalAlignment="Center">
+             <StackPanel.Background>
+                 <SolidColorBrush Color="#FF1B1448" Opacity="1"/>
+             </StackPanel.Background>
+             <StackPanel.OpacityMask>
+                 <SolidColorBrush Color="#FF17DC7F" Opacity="1"/>
+             </StackPanel.OpacityMask>
+             <TextBlock Margin="5" Text="Add Student" FontSize="30" TextAlignment="Center"  HorizontalAlignment="Center" Width="200" Foreground="White"/>
+             <TextBlock Text="First Name:" Margin="5" Foreground="White" Width="390"/>
+             <TextBox Text="{Binding FirstnamE}" Margin="5" Grid.Column="1" Height="30" Width="394">
+                 <TextBox.BorderBrush>
+                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                         <GradientStop Color="Black"/>
+                         <GradientStop Color="White" Offset="1"/>
+                     </LinearGradientBrush>
+                 </TextBox.BorderBrush>
+                 <TextBox.Foreground>
+                     <SolidColorBrush Color="White" Opacity="1"/>
+                 </TextBox.Foreground>
+                 <TextBox.Background>
+                     <SolidColorBrush Color="#FF0AF7EF" Opacity="0.1"/>
+                 </TextBox.Background>
+             </TextBox>
+             <TextBlock Text="Last Name:" Margin="5" Grid.Row="1" Foreground="White" Width="390"/>
+             <TextBox Text ="{Binding LastnamE}" Margin="5" Grid.Column="1" Foreground="White" Height="30" Width="390" >
+                 <TextBox.BorderBrush>
+                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                         <GradientStop Color="Black"/>
+                         <GradientStop Color="White" Offset="1"/>
+                     </LinearGradientBrush>
+                 </TextBox.BorderBrush>
+                 <TextBox.Background>
+                     <SolidColorBrush Color="#FF0AF7EF" Opacity="0.1"/>
+                 </TextBox.Background>
+             </TextBox>
+             <TextBlock Text="Dob:" Margin="5" Grid.Row="1" Foreground="White" Width="390"/>
+             <TextBox  Text="{Binding DOB}" Margin="5" Grid.Row="1" Grid.Column="1" Foreground="White" Height="30" Width="390">
+                 <TextBox.BorderBrush>
+                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                         <GradientStop Color="Black"/>
+                         <GradientStop Color="White" Offset="1"/>
+                     </LinearGradientBrush>
+                 </TextBox.BorderBrush>
+                 <TextBox.Background>
+                     <SolidColorBrush Color="#FF0AF7EF" Opacity="0.1"/>
+                 </TextBox.Background>
+             </TextBox>
+             <TextBlock Text="Email:" Margin="5" Grid.Row="1" Foreground="White" Width="390"/>
+             <TextBox  Text="{Binding EmaiL}" Margin="5" Grid.Row="1" Grid.Column="1" Foreground="White" Height="30" Width="390">
+                 <TextBox.BorderBrush>
+                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                         <GradientStop Color="Black"/>
+                         <GradientStop Color="White" Offset="1"/>
+                     </LinearGradientBrush>
+                 </TextBox.BorderBrush>
+                 <TextBox.Background>
+                     <SolidColorBrush Color="#FF0AF7EF" Opacity="0.1"/>
+                 </TextBox.Background>
+             </TextBox>
+             <TextBlock Text="PhoneNumber" Margin="5" Grid.Row="1" Foreground="White" Width="390"/>
+             <TextBox  Text="{Binding PhonenumbeR}" Margin="5" Grid.Row="1" Grid.Column="1" Foreground="White" Height="30" Width="390">
+                 <TextBox.Background>
+                     <SolidColorBrush Color="#FF0AF7EF" Opacity="0.1"/>
+                 </TextBox.Background>
+                 <TextBox.BorderBrush>
+                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                         <GradientStop Color="Black"/>
+                         <GradientStop Color="White" Offset="1"/>
+                     </LinearGradientBrush>
+                 </TextBox.BorderBrush>
+             </TextBox>
+             <TextBlock Text="Gender" Margin="5" Grid.Row="1" Foreground="White" Width="390"/>
+             <TextBox  Text="{Binding GendeR}" Margin="5" Grid.Row="1" Grid.Column="1" Foreground="White" Height="30" Width="390">
+                 <TextBox.Background>
+                     <SolidColorBrush Color="#FF0AF7EF" Opacity="0.1"/>
+                 </TextBox.Background>
+                 <TextBox.BorderBrush>
+                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                         <GradientStop Color="Black"/>
+                         <GradientStop Color="White" Offset="1"/>
+                     </LinearGradientBrush>
+                 </TextBox.BorderBrush>
+             </TextBox>
+
+             <TextBlock Text="Address" Margin="5" Grid.Row="1" Foreground="White" Height="16" Width="390"/>
+             <TextBox  Text="{Binding AddresS}" Margin="5" Grid.Row="1" Grid.Column="1" Foreground="White" Height="30" Width="390">
+                 <TextBox.Background>
+                     <SolidColorBrush Color="#FF0AF7EF" Opacity="0.1"/>
+                 </TextBox.Background>
+                 <TextBox.BorderBrush>
+                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                         <GradientStop Color="Black"/>
+                         <GradientStop Color="White" Offset="1"/>
+                     </LinearGradientBrush>
+                 </TextBox.BorderBrush>
+             </TextBox>
+
+
+             <StackPanel>
+                 <Button Style="{DynamicResource radiusbutton}" 
+                     Content="Add" 
+                     Foreground="White"
+                     Background="Black"
+                     Margin="0,25"
+                     Height="35"
+                     Width="250"   
+                     Command="{Binding SaveeCommand}">
+                     
+                 </Button>
+
+             </StackPanel>
+
+         </StackPanel>
+
+
+     </StackPanel>
+
+ </Grid>
+</Window>
